@@ -1,3 +1,4 @@
+require File.join(File.dirname(__FILE__), %w(.. app order_input.rb))
 require File.join(File.dirname(__FILE__), %w(.. app customer_order.rb))
 require File.join(File.dirname(__FILE__), %w(.. app product.rb))
 require File.join(File.dirname(__FILE__), %w(.. app bundle.rb))
