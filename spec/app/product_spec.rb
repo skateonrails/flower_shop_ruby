@@ -4,7 +4,8 @@ require 'spec_helper'
 describe Product do
   let(:product_name) { 'product name' }
   let(:product_code) { 'product_code' }
-  let(:product){ Product.new(code: product_code, name: product_name) }
+  let(:bundles) { [Bundle.new({}), Bundle.new({})] }
+  let(:product){ Product.new(code: product_code, name: product_name, bundles: bundles) }
 
   describe '#name' do
     it 'should return name of the product' do
@@ -15,6 +16,12 @@ describe Product do
   describe '#code' do
     it 'should return code of the product' do
       expect(product.code).to eq(product_code)
+    end
+  end
+
+  describe '#bundles' do
+    it 'should return bundles associated to the product' do
+      expect(product.bundles).to eq(bundles)
     end
   end
 end
