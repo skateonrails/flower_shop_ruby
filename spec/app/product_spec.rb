@@ -4,7 +4,8 @@ require 'spec_helper'
 describe Product do
   let(:product_name) { 'product name' }
   let(:product_code) { 'product_code' }
-  let(:bundles) { [Bundle.new({}), Bundle.new({})] }
+  let(:bundles_config) { [{value: 20.44, itens_count: 3}] }
+  let(:bundles) { BundleCollectionFactory.build(bundles_config) }
   let(:product){ Product.new(code: product_code, name: product_name, bundles: bundles) }
 
   describe '#name' do
