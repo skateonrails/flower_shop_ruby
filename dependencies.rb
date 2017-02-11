@@ -1,10 +1,14 @@
 # frozen_string_literal: true
-require File.join(File.dirname(__FILE__), %w(app exceptions.rb))
-require File.join(File.dirname(__FILE__), %w(app order_input_line.rb))
-require File.join(File.dirname(__FILE__), %w(app order_input.rb))
-require File.join(File.dirname(__FILE__), %w(app customer_order.rb))
-require File.join(File.dirname(__FILE__), %w(app product.rb))
-require File.join(File.dirname(__FILE__), %w(app product_storage.rb))
-require File.join(File.dirname(__FILE__), %w(app bundle.rb))
-require File.join(File.dirname(__FILE__), %w(app bundle_collection.rb))
-require File.join(File.dirname(__FILE__), %w(app order_item.rb))
+app_path = [File.dirname(__FILE__), 'app'].freeze
+require File.join(app_path, 'exceptions.rb')
+require File.join(app_path, 'order_input_line.rb')
+require File.join(app_path, 'order_input.rb')
+require File.join(app_path, 'customer_order.rb')
+require File.join(app_path, 'product.rb')
+require File.join(app_path, 'product_storage.rb')
+require File.join(app_path, 'bundle.rb')
+require File.join(app_path, 'bundle_collection.rb')
+require File.join(app_path, 'order_item.rb')
+# requiring factories
+factories_path = app_path + %w(factories)
+require File.join(factories_path, 'bundle_collection_factory.rb')
