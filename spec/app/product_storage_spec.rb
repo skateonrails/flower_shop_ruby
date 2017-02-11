@@ -5,17 +5,27 @@ describe ProductStorage do
   let(:roses) { Product.new(name: 'Roses', code: 'R12') }
   let(:lilies) { Product.new(name: 'Lilies', code: 'L09') }
   let(:tulips) { Product.new(name: 'Tulips', code: 'T58') }
-  let(:products) { [roses, lilies, tulips] }
-  let(:product_storage){ ProductStorage.new(products: products) }
+  let(:product_storage){ ProductStorage.instance }
 
-  describe '#products' do
-    it 'should return the products that are in storage' do
-      expect(product_storage.products).to eq(products)
+  describe '#add' do
+    it 'should add product to storage' do
+      product_storage.add(roses)
+      expect(product_storage.find_by_code(roses.code)).to eq(roses)
     end
   end
 
   describe '#find_by_code' do
     context 'with a code from a product' do
+      before(:each) do
+        product_storage.add(roses)
+        product_storage.add(lilies)
+        product_storage.add(tulips)
+      end
+
+      after(:each) do
+        product_storage.clear
+      end
+
       it 'should return a product' do
         expect( product_storage.find_by_code(roses.code) ).to eq(roses)
         expect( product_storage.find_by_code(lilies.code) ).to eq(lilies)
