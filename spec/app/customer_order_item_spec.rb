@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 require 'spec_helper'
 
-describe OrderItem do
+describe CustomerOrderItem do
   let(:product) { Product.new(name: 'roses', code: 'R17') }
   let(:bundles) { [Bundle.new({}), Bundle.new({})] }
   let(:subtotal) { 100.00 }
-  let(:order_item) { OrderItem.new(product: product, bundles: bundles, subtotal: subtotal)}
+  let(:order_item) { CustomerOrderItem.new(product: product, bundles: bundles, subtotal: subtotal)}
 
   describe '#product' do
     it 'should return the product of this item in order' do
