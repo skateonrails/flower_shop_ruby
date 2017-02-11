@@ -12,3 +12,4 @@ require File.join(app_path, 'order_item.rb')
 # requiring factories
 factories_path = app_path + %w(factories)
 require File.join(factories_path, 'bundle_collection_factory.rb')
+require File.join(factories_path, 'order_input_factory.rb')

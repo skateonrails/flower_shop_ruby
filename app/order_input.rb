@@ -1,27 +1,23 @@
 # frozen_string_literal: true
-# OrderInput receives the input for the order
-# and transform each line into a OrderInputLine
+# OrderInput is a collection of OrderInpuLine.
+# it implements Enumerable module.
 class OrderInput
-  attr_reader :input, :lines
+  include Enumerable
 
   def initialize(args)
-    @lines = []
-    @input = args[:input]
-    parse_lines
+    @lines = args[:lines]
+  end
+
+  # overriding enumerable methods
+  def each(&block)
+    lines.each(&block)
+  end
+
+  def [](index)
+    lines[index]
   end
 
   private
 
-  attr_writer :lines
-
-  def parse_lines
-    input.each_line do |input_line|
-      begin
-        lines << OrderInputLine.new(value: input_line)
-      rescue InvalidInputLineException
-        # ignoring parsing errors by now
-        nil
-      end
-    end
-  end
+  attr_accessor :lines
 end
