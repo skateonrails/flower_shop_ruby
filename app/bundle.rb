@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 # Bundle class represents a bundle for a product
 class Bundle
-  attr_reader :value, :itens_count
+  attr_reader :value, :items_count
 
   def initialize(args)
     @value = args[:value]
-    @itens_count = args[:itens_count]
+    @items_count = args[:items_count]
   end
 end

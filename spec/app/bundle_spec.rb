@@ -3,8 +3,8 @@ require 'spec_helper'
 
 describe Bundle do
   let(:value) { 30.44 }
-  let(:itens_count) { 5 }
-  let(:bundle){ Bundle.new(value: value, itens_count: itens_count) }
+  let(:items_count) { 5 }
+  let(:bundle){ Bundle.new(value: value, items_count: items_count) }
 
   describe '#value' do
     it 'should return the value of the bundle' do
@@ -12,9 +12,9 @@ describe Bundle do
     end
   end
 
-  describe '#itens_count' do
+  describe '#items_count' do
     it 'should return the itens count of the bundle' do
-      expect(bundle.itens_count).to eq(itens_count)
+      expect(bundle.items_count).to eq(items_count)
     end
   end
 end
