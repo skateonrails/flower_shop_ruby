@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 # CustomerOrder represents the order from a customer,
-# with it's total value, products and bundles
+# with it's items
 class CustomerOrder
-  attr_reader :items, :total
+  attr_reader :items
 
   def initialize(args)
     @items = args[:items]
-    @total = args[:total]
   end
 end
