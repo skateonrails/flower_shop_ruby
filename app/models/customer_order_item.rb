@@ -2,11 +2,15 @@
 # CustomerOrderItem represents a product and it's bundles
 # inside an order, with it's subtotal
 class CustomerOrderItem
-  attr_reader :product, :bundles, :subtotal
+  attr_reader :product, :bundle, :count
 
   def initialize(args)
     @product = args[:product]
-    @bundles = args[:bundles]
-    @subtotal = args[:subtotal]
+    @bundle = args[:bundle]
+    @count = args[:count].to_i
+  end
+
+  def subtotal
+    bundle.value * count
   end
 end
