@@ -20,3 +20,5 @@ require File.join(factories_path, 'bundle_collection_factory.rb')
 require File.join(factories_path, 'order_input_factory.rb')
 # requiring storage
 require File.join(storage_path, 'product_storage.rb')
+# requiring services
+require File.join(app_root_path, 'shipping_service.rb')

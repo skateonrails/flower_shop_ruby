@@ -10,6 +10,10 @@ class CustomerOrderItem
     @count = args[:count].to_i
   end
 
+  def decrease_count
+    @count -= 1
+  end
+
   def subtotal
     bundle.value * count
   end

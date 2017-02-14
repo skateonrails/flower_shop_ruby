@@ -11,6 +11,10 @@ class BundleCollection
     end
   end
 
+  def available_bundles_for_packing(items_count)
+    find_all { |bundle| bundle.items_count <= items_count }
+  end
+
   # overriding enumerable methods
   def each(&block)
     bundles.each(&block)
