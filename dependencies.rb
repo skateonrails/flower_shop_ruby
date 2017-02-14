@@ -4,6 +4,7 @@ models_path = app_root_path + %w(models)
 collections_path = app_root_path + %w(collections)
 factories_path = app_root_path + %w(factories)
 storage_path = app_root_path + %w(storage)
+services_path = app_root_path + %w(services)
 # requiring common files
 require File.join(app_root_path, 'exceptions.rb')
 # requiring models
@@ -21,4 +22,4 @@ require File.join(factories_path, 'order_input_factory.rb')
 # requiring storage
 require File.join(storage_path, 'product_storage.rb')
 # requiring services
-require File.join(app_root_path, 'shipping_service.rb')
+require File.join(services_path, 'shipping_service.rb')

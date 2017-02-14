@@ -5,7 +5,6 @@ require 'ostruct'
 class ShippingService
   def initialize(args)
     init_stash
-    @storage = args[:storage]
     @order_line = args[:order_input_line]
   end
 
@@ -26,7 +25,7 @@ class ShippingService
 
   private
 
-  attr_accessor :order_line, :stash, :storage
+  attr_accessor :order_line, :stash
 
   def init_stash
     @stash = []
@@ -37,7 +36,7 @@ class ShippingService
   end
 
   def product
-    storage.find_by_code(order_line.product_code)
+    ProductStorage.instance.find_by_code(order_line.product_code)
   end
 
   def product_bundles

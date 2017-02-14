@@ -48,6 +48,13 @@ RSpec.configure do |config|
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
+  # Requires supporting ruby files
+  # in spec/support/ and its subdirectories.
+  support_files_regex = File.join(File.dirname(__FILE__), %w(support *.rb))
+  support_root = Dir[support_files_regex].sort
+  support_root.uniq.each {|f| require f}
+  #~ end
+
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

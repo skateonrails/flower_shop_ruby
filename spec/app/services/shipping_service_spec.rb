@@ -3,45 +3,14 @@ require 'spec_helper'
 
 describe ShippingService do
   let(:order_input_line) { OrderInputLine.new(value: input_line) }
-  let(:roses_bundles_config) do
-    [
-      {value: 6.99, items_count: 5},
-      {value: 12.99, items_count: 10}
-    ]
-  end
-  let(:roses_bundles) { BundleCollectionFactory.build(roses_bundles_config) }
-  let(:roses) { Product.new(name: 'Roses', code: 'R12', bundles: roses_bundles) }
-
-  let(:lilies_bundles_config) do
-    [
-      {value: 9.95, items_count: 3},
-      {value: 16.95, items_count: 6},
-      {value: 24.95, items_count: 9}
-    ]
-  end
-  let(:lilies_bundles) { BundleCollectionFactory.build(lilies_bundles_config) }
-  let(:lilies) { Product.new(name: 'Lilies', code: 'L09', bundles: lilies_bundles) }
-
-  let(:tulips_bundles_config) do
-    [
-      {value: 5.95, items_count: 3},
-      {value: 9.95, items_count: 5},
-      {value: 16.99, items_count: 9},
-    ]
-  end
-  let(:tulips_bundles) { BundleCollectionFactory.build(tulips_bundles_config) }
-  let(:tulips) { Product.new(name: 'Tulips', code: 'T58', bundles: tulips_bundles) }
-
-  let(:shipping_service) { ShippingService.new(order_input_line: order_input_line, storage: ProductStorage.instance) }
+  let(:shipping_service) { ShippingService.new(order_input_line: order_input_line) }
   let(:stash) { shipping_service.pack }
 
-  before(:each) do
-    ProductStorage.instance.add(roses)
-    ProductStorage.instance.add(lilies)
-    ProductStorage.instance.add(tulips)
+  before(:all) do
+    ProductStorageSeed.run
   end
 
-  after(:each) do
+  after(:all) do
     ProductStorage.instance.clear
   end
 
