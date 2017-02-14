@@ -2,7 +2,7 @@
 require 'spec_helper'
 
 describe OrderInput do
-  let(:filepath) { File.join(File.dirname(__FILE__), %w(.. input_examples example1.md)) }
+  let(:filepath) { File.join(File.dirname(__FILE__), %w(.. .. input_examples example1.md)) }
   let(:input) { File.new(filepath) }
   let(:order_input) { OrderInputFactory.build(input) }
 
