@@ -17,4 +17,8 @@ class Package
     return 0 unless bundle
     bundle.value * count
   end
+
+  def to_s
+    "#{count} x #{bundle}"
+  end
 end

@@ -10,4 +10,10 @@ describe CustomerOrder do
       expect(customer_order.items).to eq(items_list)
     end
   end
+
+  describe '#to_s' do
+    it 'should return a formatted customer order' do
+      expect(customer_order.to_s).to eq(items_list.map(&:to_s).join("\n"))
+    end
+  end
 end

@@ -8,4 +8,8 @@ class Product
     @code = args[:code]
     @bundles = args[:bundles]
   end
+
+  def to_s
+    code
+  end
 end

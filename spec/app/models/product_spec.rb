@@ -25,4 +25,10 @@ describe Product do
       expect(product.bundles).to eq(bundles)
     end
   end
+
+  describe '#to_s' do
+    it 'should return the code of the product' do
+      expect(product.to_s).to eq(product_code)
+    end
+  end
 end

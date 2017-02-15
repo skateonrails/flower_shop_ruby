@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 app_root_path = [File.dirname(__FILE__), 'app'].freeze
+
+helpers_files_regexp = app_root_path + %w(helpers *.rb)
+helpers_root = Dir[File.join(helpers_files_regexp)].sort
+helpers_root.uniq.each { |f| require f }
+
 models_path = app_root_path + %w(models)
 collections_path = app_root_path + %w(collections)
 factories_path = app_root_path + %w(factories)

@@ -31,4 +31,10 @@ describe CustomerOrderItem do
       expect(order_item.subtotal).to eq(subtotal)
     end
   end
+
+  describe '#to_s' do
+    it 'should return a formatted order_item info' do
+      expect(order_item.to_s).to eq("#{count} #{product.code} $#{ValueFormatter.currency(subtotal)}\n" + packed_bundles.map(&:to_s).join("\n"))
+    end
+  end
 end

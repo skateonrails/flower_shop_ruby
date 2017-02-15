@@ -17,4 +17,10 @@ describe Bundle do
       expect(bundle.items_count).to eq(items_count)
     end
   end
+
+  describe '#to_s' do
+    it 'should return a formatted bundle info' do
+      expect(bundle.to_s).to eq("#{items_count} $#{ValueFormatter.currency(value)}")
+    end
+  end
 end

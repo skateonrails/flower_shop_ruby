@@ -7,4 +7,8 @@ class Bundle
     @value = args[:value]
     @items_count = args[:items_count]
   end
+
+  def to_s
+    "#{items_count} $#{ValueFormatter.currency(value)}"
+  end
 end

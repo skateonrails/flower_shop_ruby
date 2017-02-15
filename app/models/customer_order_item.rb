@@ -7,7 +7,12 @@ class CustomerOrderItem
   def initialize(args)
     @product = args[:product]
     @count = args[:count].to_i
-    @packed_bundles = args[:packed_bundles]
+    @packed_bundles = args[:packed_bundles] || []
+  end
+
+  def to_s
+    string = "#{count} #{product} $#{ValueFormatter.currency(subtotal)}\n"
+    string + packed_bundles_to_s
   end
 
   def subtotal
@@ -16,5 +21,11 @@ class CustomerOrderItem
     end
 
     value.round(2)
+  end
+
+  private
+
+  def packed_bundles_to_s
+    packed_bundles.map(&:to_s).join("\n")
   end
 end

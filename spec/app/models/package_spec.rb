@@ -25,4 +25,10 @@ describe Package do
       expect(package.value).to eq(count * bundle.value)
     end
   end
+
+  describe '#to_s' do
+    it 'should return a formatted package info' do
+      expect(package.to_s).to eq("#{count} x #{items_count} $#{ValueFormatter.currency(value)}")
+    end
+  end
 end
