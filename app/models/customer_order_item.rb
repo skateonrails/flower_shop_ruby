@@ -2,19 +2,19 @@
 # CustomerOrderItem represents a product and it's bundles
 # inside an order, with it's subtotal
 class CustomerOrderItem
-  attr_reader :product, :bundle, :count
+  attr_reader :product, :count, :packed_bundles
 
   def initialize(args)
     @product = args[:product]
-    @bundle = args[:bundle]
     @count = args[:count].to_i
-  end
-
-  def decrease_count
-    @count -= 1
+    @packed_bundles = args[:packed_bundles]
   end
 
   def subtotal
-    bundle.value * count
+    value = packed_bundles.inject(0) do |memo, packed_bundle|
+      memo + packed_bundle.value
+    end
+
+    value.round(2)
   end
 end
