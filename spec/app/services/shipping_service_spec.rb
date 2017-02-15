@@ -24,10 +24,10 @@ describe ShippingService do
           expect(order_item.count).to eq(10)
           expect(order_item.subtotal).to eq(12.99)
 
-          packed_bundles = order_item.packed_bundles
-          expect(packed_bundles.size).to eq(1)
-          expect(packed_bundles.first.count).to eq(1)
-          expect(packed_bundles.first.bundle.items_count).to eq(10)
+          packed_bundles_collection = order_item.packed_bundles_collection
+          expect(packed_bundles_collection.size).to eq(1)
+          expect(packed_bundles_collection.first.count).to eq(1)
+          expect(packed_bundles_collection.first.bundle.items_count).to eq(10)
         end
       end
 
@@ -39,13 +39,13 @@ describe ShippingService do
           expect(order_item.count).to eq(15)
           expect(order_item.subtotal).to eq(41.90)
 
-          packed_bundles = order_item.packed_bundles
-          expect(packed_bundles.size).to eq(2)
-          expect(packed_bundles.first.count).to eq(1)
-          expect(packed_bundles.first.bundle.items_count).to eq(9)
+          packed_bundles_collection = order_item.packed_bundles_collection
+          expect(packed_bundles_collection.size).to eq(2)
+          expect(packed_bundles_collection.first.count).to eq(1)
+          expect(packed_bundles_collection.first.bundle.items_count).to eq(9)
 
-          expect(packed_bundles.last.count).to eq(1)
-          expect(packed_bundles.last.bundle.items_count).to eq(6)
+          expect(packed_bundles_collection.last.count).to eq(1)
+          expect(packed_bundles_collection.last.bundle.items_count).to eq(6)
         end
       end
 
@@ -56,13 +56,13 @@ describe ShippingService do
           expect(order_item.count).to eq(13)
           expect(order_item.subtotal).to eq(25.85)
 
-          packed_bundles = order_item.packed_bundles
-          expect(packed_bundles.size).to eq(2)
-          expect(packed_bundles.first.count).to eq(2)
-          expect(packed_bundles.first.bundle.items_count).to eq(5)
+          packed_bundles_collection = order_item.packed_bundles_collection
+          expect(packed_bundles_collection.size).to eq(2)
+          expect(packed_bundles_collection.first.count).to eq(2)
+          expect(packed_bundles_collection.first.bundle.items_count).to eq(5)
 
-          expect(packed_bundles.last.count).to eq(1)
-          expect(packed_bundles.last.bundle.items_count).to eq(3)
+          expect(packed_bundles_collection.last.count).to eq(1)
+          expect(packed_bundles_collection.last.bundle.items_count).to eq(3)
         end
       end
     end

@@ -4,9 +4,10 @@ require 'spec_helper'
 describe CustomerOrderItem do
   let(:product) { Product.new(name: 'roses', code: 'R17') }
   let(:count) { 100 }
-  let(:packed_bundles) { [Package.new({}), Package.new({})] }
-  let(:subtotal) { packed_bundles.inject(0){|sum, obj| sum + obj.value} }
-  let(:order_item) { CustomerOrderItem.new(product: product, count: count, packed_bundles: packed_bundles)}
+  let(:bundles) { [Package.new({}), Package.new({})] }
+  let(:packed_bundles_collection) { PackedBundlesCollection.new(bundles: bundles) }
+  let(:subtotal) { packed_bundles_collection.inject(0){|sum, obj| sum + obj.value} }
+  let(:order_item) { CustomerOrderItem.new(product: product, count: count, packed_bundles_collection: packed_bundles_collection)}
 
   describe '#product' do
     it 'should return the product of this item in order' do
@@ -20,9 +21,9 @@ describe CustomerOrderItem do
     end
   end
 
-  describe '#packed_bundles' do
+  describe '#packed_bundles_collection' do
     it 'should return the packed bundles of this item in order' do
-      expect(order_item.packed_bundles).to eq(packed_bundles)
+      expect(order_item.packed_bundles_collection).to eq(packed_bundles_collection)
     end
   end
 
@@ -34,7 +35,7 @@ describe CustomerOrderItem do
 
   describe '#to_s' do
     it 'should return a formatted order_item info' do
-      expect(order_item.to_s).to eq("#{count} #{product.code} $#{ValueFormatter.currency(subtotal)}\n" + packed_bundles.map(&:to_s).join("\n"))
+      expect(order_item.to_s).to eq("#{count} #{product.code} $#{ValueFormatter.currency(subtotal)}\n" + packed_bundles_collection.map(&:to_s).join("\n"))
     end
   end
 end

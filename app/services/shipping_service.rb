@@ -27,7 +27,7 @@ class ShippingService
   attr_accessor :order_line, :bundle_package
 
   def init_bundle_package
-    @bundle_package = []
+    @bundle_package = PackedBundlesCollection.new
   end
 
   def order_quantity
@@ -49,7 +49,7 @@ class ShippingService
   def create_order_item
     CustomerOrderItem.new(product: product,
                           count: order_quantity,
-                          packed_bundles: bundle_package)
+                          packed_bundles_collection: bundle_package)
   end
 
   def add_to_bundle_package(args)
