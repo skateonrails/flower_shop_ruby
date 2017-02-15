@@ -20,3 +20,12 @@ A successfully passing test(s) that demonstrates the following output: (The form
 - 13 T58 $25.85
  - 2 x 5 $9.95
  - 1 x 3 $5.95
+
+---
+
+# The Solution
+
+As the exercise said, the output wanted was a successfully passing test. You can find 2 tests that represents this output:
+
+  - `ShippingServiceSpec`: This spec shows the output by methods like value, bundles, etc.
+  - `BillingServiceSpec`: This spec tests the output as a string, something like the given example in the "Output" topic below.
