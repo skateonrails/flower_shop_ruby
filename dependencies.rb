@@ -18,10 +18,10 @@ require File.join(models_path, 'customer_order_item.rb')
 require File.join(models_path, 'product.rb')
 require File.join(models_path, 'bundle.rb')
 require File.join(models_path, 'package.rb')
+require File.join(models_path, 'customer_order.rb')
 # requiring collections
 require File.join(collections_path, 'bundle_collection.rb')
 require File.join(collections_path, 'order_input.rb')
-require File.join(collections_path, 'customer_order.rb')
 # requiring factories
 require File.join(factories_path, 'bundle_collection_factory.rb')
 require File.join(factories_path, 'order_input_factory.rb')
