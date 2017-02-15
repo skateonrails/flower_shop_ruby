@@ -29,3 +29,4 @@ require File.join(factories_path, 'order_input_factory.rb')
 require File.join(storage_path, 'product_storage.rb')
 # requiring services
 require File.join(services_path, 'shipping_service.rb')
+require File.join(services_path, 'billing_service.rb')
