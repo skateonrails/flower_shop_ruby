@@ -12,6 +12,7 @@ require File.join(models_path, 'order_input_line.rb')
 require File.join(models_path, 'customer_order_item.rb')
 require File.join(models_path, 'product.rb')
 require File.join(models_path, 'bundle.rb')
+require File.join(models_path, 'package.rb')
 # requiring collections
 require File.join(collections_path, 'bundle_collection.rb')
 require File.join(collections_path, 'order_input.rb')
