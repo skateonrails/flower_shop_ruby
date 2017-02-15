@@ -27,7 +27,7 @@ class ShippingService
   attr_accessor :order_line, :bundle_package
 
   def init_bundle_package
-    @bundle_package = PackedBundlesCollection.new
+    @bundle_package = BundleCollection.new
   end
 
   def order_quantity

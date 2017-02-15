@@ -18,6 +18,10 @@ class Package
     bundle.value * count
   end
 
+  def items_count
+    count
+  end
+
   def to_s
     "#{count} x #{bundle}"
   end
