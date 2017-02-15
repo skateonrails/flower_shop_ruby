@@ -13,4 +13,12 @@ describe BundleCollection do
       expect(bundle_collection[1]).to eq(first_bundle)
     end
   end
+
+  describe '#available_bundles_for_packing' do
+    it 'should return bundles that have an item_count less than or equal the parameter' do
+      available_bundles = bundle_collection.available_bundles_for_packing(3)
+      expect(available_bundles.size).to eq(1)
+      expect(available_bundles.first).to eq(second_bundle)
+    end
+  end
 end
