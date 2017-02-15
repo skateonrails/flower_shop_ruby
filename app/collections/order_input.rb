@@ -13,10 +13,6 @@ class OrderInput
     lines.each(&block)
   end
 
-  def [](index)
-    lines[index]
-  end
-
   private
 
   attr_accessor :lines

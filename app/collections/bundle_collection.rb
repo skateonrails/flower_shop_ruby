@@ -20,10 +20,6 @@ class BundleCollection
     bundles.each(&block)
   end
 
-  def [](index)
-    bundles[index]
-  end
-
   private
 
   attr_reader :bundles

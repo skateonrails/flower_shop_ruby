@@ -7,10 +7,10 @@ describe BundleCollection do
   let(:bundles) { [first_bundle, second_bundle] }
   let(:bundle_collection) { BundleCollection.new(bundles: bundles) }
 
-  context 'when using a BundleCollection' do
-    it 'should retrive bundles ordered by items_count value' do
-      expect(bundle_collection[0]).to eq(second_bundle)
-      expect(bundle_collection[1]).to eq(first_bundle)
+  it 'should act as array of objects that respond to value and items_count' do
+    bundle_collection.each do |bundle|
+      expect(bundle).to respond_to(:value)
+      expect(bundle).to respond_to(:items_count)
     end
   end
 
