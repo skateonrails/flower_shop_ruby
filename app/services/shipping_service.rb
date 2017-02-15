@@ -1,10 +1,9 @@
 # frozen_string_literal: true
-require 'ostruct'
 # ShippingService is responsible for getting the order_input_line,
 # find the products and generate the order_item with the possible bundles
 class ShippingService
   def initialize(args)
-    init_stash
+    init_bundle_package
     @order_line = args[:order_input_line]
   end
 
@@ -14,9 +13,9 @@ class ShippingService
 
     begin
       pack_bundles(valid_bundles)
-      stash
+      create_order_item
     rescue PackingError
-      init_stash
+      init_bundle_package
       valid_bundles.pop
       retry if valid_bundles.any?
       raise UnableToPackingError
@@ -25,10 +24,10 @@ class ShippingService
 
   private
 
-  attr_accessor :order_line, :stash
+  attr_accessor :order_line, :bundle_package
 
-  def init_stash
-    @stash = []
+  def init_bundle_package
+    @bundle_package = []
   end
 
   def order_quantity
@@ -47,22 +46,31 @@ class ShippingService
     product_bundles.available_bundles_for_packing(items_quantity)
   end
 
-  def add_to_stash(args)
-    stash << OpenStruct.new(args)
+  def create_order_item
+    CustomerOrderItem.new(product: product,
+                          count: order_quantity,
+                          packed_bundles: bundle_package)
   end
 
-  def decrease_count_from_last_stash
-    last_stash.count -= 1
+  def add_to_bundle_package(args)
+    bundle_package << Package.new(args)
   end
 
-  def last_stash_count
-    last_stash.count
+  def last_bundle_package
+    bundle_package.last
   end
 
-  def last_stash
-    stash.last
+  def decrease_count_from_last_bundle_package
+    last_bundle_package.decrease_count
   end
 
+  def last_bundle_package_count
+    last_bundle_package.count
+  end
+
+  # rubocop:disable Metrics/LineLength
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   # :reek:TooManyStatements
   def pack_bundles(valid_bundles, quantity = order_quantity)
     raise PackingError if valid_bundles.empty?
@@ -75,22 +83,22 @@ class ShippingService
     packed_products_count = quantity / last_bundle_count
     unpacked_products_quantity = quantity % last_bundle_count
 
-    add_to_stash(count: packed_products_count, bundle: last_bundle)
+    add_to_bundle_package(count: packed_products_count, bundle: last_bundle)
     return if unpacked_products_quantity.zero?
 
     if unpacked_products_quantity >= first_bundle_count
       valid_bundles = valid_packing_bundles(unpacked_products_quantity)
     else
       PackingError if packed_products_count == 1 || valid_bundles.size == 1
-      unpacked_products_quantity = adjust_previous_stash(valid_bundles, quantity)
+      unpacked_products_quantity = adjust_previous_bundle_package(valid_bundles, quantity)
     end
 
     pack_bundles(valid_bundles, unpacked_products_quantity)
   end
 
-  def adjust_previous_stash(valid_bundles, quantity)
-    decrease_count_from_last_stash
+  def adjust_previous_bundle_package(valid_bundles, quantity)
+    decrease_count_from_last_bundle_package
     last_bundle = valid_bundles.pop
-    quantity - last_stash_count * last_bundle.items_count
+    quantity - last_bundle_package_count * last_bundle.items_count
   end
 end
