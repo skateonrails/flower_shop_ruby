@@ -5,7 +5,7 @@ describe Product do
   let(:product_name) { 'product name' }
   let(:product_code) { 'product_code' }
   let(:bundles_config) { [{value: 20.44, items_count: 3}] }
-  let(:bundles) { BundleCollectionFactory.build(bundles_config) }
+  let(:bundles) { SortedCollectionFactory.build(bundles_config) }
   let(:product){ Product.new(code: product_code, name: product_name, bundles: bundles) }
 
   describe '#name' do

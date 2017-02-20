@@ -1,12 +1,12 @@
 # frozen_string_literal: true
-# BundleCollectionFactory is a factory to create a BundleCollection
+# SortedCollectionFactory is a factory to create a SortedCollection
 # from an array of hashes, as a configuration
-module BundleCollectionFactory
+module SortedCollectionFactory
   def self.build(config)
     bundles = config.map do |config_hash|
       Bundle.new(config_hash)
     end
 
-    BundleCollection.new(bundles: bundles)
+    SortedCollection.new(items: bundles)
   end
 end

@@ -5,7 +5,7 @@ describe CustomerOrderItem do
   let(:product) { Product.new(name: 'roses', code: 'R17') }
   let(:count) { 100 }
   let(:bundles) { [Package.new({}), Package.new({})] }
-  let(:packed_bundles_collection) { BundleCollection.new(bundles: bundles) }
+  let(:packed_bundles_collection) { SortedCollection.new(items: bundles) }
   let(:subtotal) { packed_bundles_collection.inject(0){|sum, obj| sum + obj.value} }
   let(:order_item) { CustomerOrderItem.new(product: product, count: count, packed_bundles_collection: packed_bundles_collection)}
 

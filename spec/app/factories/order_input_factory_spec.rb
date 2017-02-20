@@ -6,7 +6,7 @@ describe OrderInputFactory do
   let(:input) { File.new(filepath) }
 
   describe '::build' do
-    it 'should create a BundleCollection from config' do
+    it 'should create a OrderInput from config' do
       expect(OrderInputFactory.build(input)).to be_a(OrderInput)
     end
   end

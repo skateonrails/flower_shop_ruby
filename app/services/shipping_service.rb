@@ -27,7 +27,7 @@ class ShippingService
   attr_accessor :order_line, :bundle_package
 
   def init_bundle_package
-    @bundle_package = BundleCollection.new
+    @bundle_package = SortedCollection.new
   end
 
   def order_quantity
@@ -43,7 +43,7 @@ class ShippingService
   end
 
   def valid_packing_bundles(items_quantity = order_quantity)
-    product_bundles.available_bundles_for_packing(items_quantity)
+    product_bundles.less_than_or_equal_to(items_quantity)
   end
 
   def create_order_item

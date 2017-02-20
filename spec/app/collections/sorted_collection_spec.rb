@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 require 'spec_helper'
 
-describe BundleCollection do
+describe SortedCollection do
   let(:first_bundle) { Bundle.new(value: 30.44, items_count: 5) }
   let(:second_bundle) { Bundle.new(value: 30, items_count: 2) }
   let(:bundles) { [first_bundle, second_bundle] }
   let(:reverse_sorted_bundles) { bundles.sort{|bundle_a, bundle_b| bundle_b.items_count <=> bundle_a.items_count} }
-  let(:bundle_collection) { BundleCollection.new(bundles: bundles) }
+  let(:bundle_collection) { SortedCollection.new(items: bundles) }
 
   it 'should act as array of objects that respond to value and items_count' do
     bundle_collection.each do |bundle|
@@ -22,9 +22,9 @@ describe BundleCollection do
     end
   end
 
-  describe '#available_bundles_for_packing' do
+  describe '#less_than_or_equal_to' do
     it 'should return bundles that have an item_count less than or equal the parameter' do
-      available_bundles = bundle_collection.available_bundles_for_packing(3)
+      available_bundles = bundle_collection.less_than_or_equal_to(3)
       expect(available_bundles.size).to eq(1)
       expect(available_bundles.first).to eq(second_bundle)
     end

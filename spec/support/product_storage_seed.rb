@@ -16,7 +16,7 @@ class ProductStorageSeed
     end
 
     def roses_bundles
-      BundleCollectionFactory.build(roses_bundles_config)
+      SortedCollectionFactory.build(roses_bundles_config)
     end
 
     def roses
@@ -32,7 +32,7 @@ class ProductStorageSeed
     end
 
     def lilies_bundles
-      BundleCollectionFactory.build(lilies_bundles_config)
+      SortedCollectionFactory.build(lilies_bundles_config)
     end
 
     def lilies
@@ -48,7 +48,7 @@ class ProductStorageSeed
     end
 
     def tulips_bundles
-      BundleCollectionFactory.build(tulips_bundles_config)
+      SortedCollectionFactory.build(tulips_bundles_config)
     end
 
     def tulips
